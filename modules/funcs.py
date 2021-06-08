@@ -7,6 +7,9 @@ import os
 def pjname():
     return input('Type the name of the project: ')
 
+def dsetop():
+    return input('Use the Breast Cancer dataset as example (Y/N)? ').lower()
+
 def printFiles(f):
     os.system('cls' if os.name == 'nt' else 'clear')
     print('#' * 67, '\n')

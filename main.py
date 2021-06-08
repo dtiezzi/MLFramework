@@ -2,7 +2,7 @@ from modules.readDb import ReadDb
 from modules.resample import Resampling
 from modules.runmodel import Run
 from modules.model import Mlmodel
-from modules.funcs import printMloptions, printdf, printFiles, plotTree, pjname
+from modules.funcs import printMloptions, printdf, printFiles, plotTree, pjname, dsetop
 from modules.gridsc import Grid
 from modules.models import Modelist
 import os
@@ -17,8 +17,14 @@ filesList = ["./static/" + f for f in files if f.endswith('.csv')]
 
 def main():
     project_name = pjname()
-    fn = printFiles(filesList)
-    db = ReadDb(filesList[fn])
+    dset_op = dsetop()
+    print(dset_op)
+    db = ReadDb()
+    if dset_op != 'y':
+        fn = printFiles(filesList)
+        db.readfiles(filesList[fn])
+    else:
+        db.readbrca()
     db.preprocess()
     printdf(db.X, "Independent Variables Summary")
     tt = Resampling(db.X, db.y)
@@ -32,6 +38,7 @@ def main():
         m = Mlmodel(op)
         m.bildmodels(ml)
         for model, name in zip(m.models, m.names):
+            name.replace(" ", "")
             runModel = Run(model, tt.X_train, tt.y_train, tt.X_test, tt.y_test)
             runModel.runModel(name=name, pjname=project_name)
             runModel.reportpred(title=name, pjname=project_name)
@@ -43,6 +50,7 @@ def main():
         m = Mlmodel(op)
         m.bildmodels(Modelist())
         for model, name in zip(m.models, m.names):
+            name.replace(" ", "")
             runModel = Run(model, tt.X_train, tt.y_train, tt.X_test, tt.y_test)
             runModel.runModel(name=name, pjname=project_name)
             runModel.reportpred(title=name, pjname=project_name)
