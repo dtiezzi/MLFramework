@@ -27,11 +27,23 @@ def subset(df, op='y'):
     while op == 'y':
         cols = ['NA']
         cols = cols + list(df.columns)
-        for n, i in enumerate(cols):
-            print('''
-        {0} - {1}    
-        '''.format(n, i))
-        c = int(input('Select a column for subset:'))
+        ops_list = [cols[i:i+3] for i in range(0, len(cols), 3)]
+        i = 0
+        for o in ops_list:
+            if len(o) == 3:
+                print('''
+    {} - {: <20}   |   {} - {: <20}   |   {} - {: <20}
+    '''.format(i, o[0],i+1, o[1], i+2, o[2]), end='')
+            elif len(o) == 2:
+                print('''
+    {} - {: <20}   |   {} - {: <20}
+    '''.format(i, o[0], i+1, o[1]), end='')
+            else:
+                print('''
+    {} - {: <20}
+    '''.format(i, o[0]), end='')
+            i+=3
+        c = int(input('\nSelect a column for subset:'))
         os.system('cls' if os.name == 'nt' else 'clear')
         if c:
             col = cols[c]
@@ -58,13 +70,25 @@ def printoptions(ops, inst, multiple=0):
     ops = list(ops)
     if multiple:
         ops.append('NA')
+    ops_list = [ops[i:i+3] for i in range(0, len(ops), 3)]
+    i = 1
+    for o in ops_list:
+        if len(o) == 3:
+            print('''
+    {} - {: <20}   |   {} - {: <20}   |   {} - {: <20}
+'''.format(i, o[0],i+1, o[1], i+2, o[2]), end='')
+        elif len(o) == 2:
+            print('''
+    {} - {: <20}   |   {} - {: <20}
+'''.format(i, o[0], i+1, o[1]), end='')
+        else:
+            print('''
+    {} - {: <20}
+'''.format(i, o[0]), end='')
+        i+=3
     print('''
     {0}
 '''.format(inst))
-    for i, o in enumerate(ops):
-        print('''
-    {0} - {1}
-'''.format(i+1, o), end='')
     return ops[int(input())-1] if not multiple else [ops[i-1] for i in list(map(int, input().split()))]
 
 
