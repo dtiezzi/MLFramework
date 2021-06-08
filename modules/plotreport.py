@@ -30,20 +30,20 @@ def plotgraphs(y_test, y_pred, prob_pos, name, pjname, normalizeCM=False, plot_c
     fig = plt.figure(3, figsize=(10, 10))
     ax1 = plt.subplot2grid((3, 1), (0, 0), rowspan=2)
     ax2 = plt.subplot2grid((3, 1), (2, 0))
-    ax1.plot([0, 1], [0, 1], "k:", label="Perfeitamente calibrado",)
+    ax1.plot([0, 1], [0, 1], "k:", label="Perfectly calibrated",)
     ax1.plot(mean_predicted_value, fraction_of_positives, "s-",
                     label="%s (%1.3f)" % (name, clf_score))
 
     ax2.hist(prob_pos, range=(0, 1), bins=10, label=name,
                     histtype="step", lw=2)
 
-    ax1.set_ylabel("Fração de positivos")
+    ax1.set_ylabel("Fraction of positives")
     ax1.set_ylim([-0.05, 1.05])
     ax1.legend(loc="lower right")
-    ax1.set_title('Gráfico de Calibração  (reliability curve)')
+    ax1.set_title('Calibration Plot  (reliability curve)')
 
-    ax2.set_xlabel("Valor médio predito")
-    ax2.set_ylabel("Quantidade")
+    ax2.set_xlabel("Mean predicted value")
+    ax2.set_ylabel("count")
     ax2.legend(loc="upper center", ncol=2)
 
     for item in ([ax1.title, ax1.xaxis.label, ax1.yaxis.label] +
