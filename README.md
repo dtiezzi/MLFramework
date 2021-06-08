@@ -41,12 +41,12 @@ When running the Decision Tree algorithm, the the decision tree plot is created:
 
 All algorithms save a ROC curve, a Reliability plot and the Confusion Matrix:
 
-<img src="_img/test_DT_ROC.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_ROC.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
 *Calibration Plot:*
-<img src="_img/test_DT_CP.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_CP.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
 *Confusion Matrix:*
-<img src="_img/test_DT_CM.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_CM.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
 Plots are saved into `reports/graphs` folders. Your models and the accuracy report are saved in `reports/models` and `reports/txtfiles`, respectively.
