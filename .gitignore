@@ -120,9 +120,13 @@ venv.bak/
 # mkdocs documentation
 /site
 static/*
+!static/.gitkeep
 reports/graphs/*
+!reports/graphs/.gitkeep
 reports/models/*
+!reports/models/.gitkeep
 reports/txtfiles/*
+!reports/txtfiles/.gitkeep
 
 # mypy
 .mypy_cache/
