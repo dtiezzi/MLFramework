@@ -43,10 +43,10 @@ All algorithms save a ROC curve, a Reliability plot and the Confusion Matrix:
 
 <img src="_img/test_DT_ROC.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
-*Calibration Plot:*
+Calibration Plot:
 <img src="_img/test_DT_CP.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
-*Confusion Matrix:*
+Confusion Matrix:
 <img src="_img/test_DT_CM.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
 The SMOTE oversampling method is available and is recommended to use for unbalanced samples. You can use the `IterativeImputer` class from the Scikit-learn package to impute missing values.
