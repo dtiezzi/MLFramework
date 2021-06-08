@@ -37,12 +37,16 @@ You can use the Scikit-learn breast cancer sample dataset as an example. The pip
 
 When running the Decision Tree algorithm, the the decision tree plot is created:
 
-<img src="_img/test_decision_tree.svg">
+<img src="_img/test_decision_tree.svg" style="display: block; margin-left: auto; margin-right: auto;">
 
 All algorithms save a ROC curve, a Reliability plot and the Confusion Matrix:
 
-<img src="_img/test_Decision Tree_ROC_2021_06_07_22_29_18.png">
-<img src="_img/test_Decision Tree_CP_2021_06_07_22_29_18.png">
-<img src="_img/test_Decision Tree_CM_2021_06_07_22_29_18.png">
+<img src="_img/test_DT_ROC.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+</br>
+*Calibration Plot:*
+<img src="_img/test_DT_CP.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+</br>
+*Confusion Matrix:*
+<img src="_img/test_DT_CM.png" height='150px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
 Plots are saved into `reports/graphs` folders. Your models and the accuracy report are saved in `reports/models` and `reports/txtfiles`, respectively.
