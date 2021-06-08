@@ -3,15 +3,24 @@ import numpy as np
 from . import funcs
 from sklearn.preprocessing import scale
 from . import dfimputer
+from sklearn import datasets
 
 class ReadDb:
 
-    def __init__(self, file):
-        self.df = pd.read_csv(file)
+    def __init__(self):
+        self.df = None
         self.X = None
         self.y = None
         self.target = None
         self.class_name = None
+
+    def readfiles(self, file):
+        self.df = pd.read_csv(file)
+
+    def readbrca(self):
+        brca = datasets.load_breast_cancer()
+        self.df = pd.DataFrame(brca.data, columns=brca.feature_names)
+        self.df['diagnostic'] = brca.target
 
     def preprocess(self):
         funcs.printdf(self.df, 'Database Summary')
