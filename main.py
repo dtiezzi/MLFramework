@@ -2,7 +2,7 @@ from modules.readDb import ReadDb
 from modules.resample import Resampling
 from modules.runmodel import Run
 from modules.model import Mlmodel
-from modules.funcs import printMloptions, printdf, printFiles, plotTree, pjname, dsetop
+from modules.funcs import printMloptions, printdf, printFiles, plotTree, pjname, dsetop, smtop
 from modules.gridsc import Grid
 from modules.models import Modelist
 import os
@@ -28,7 +28,8 @@ def main():
     db.preprocess()
     printdf(db.X, "Independent Variables Summary")
     tt = Resampling(db.X, db.y)
-    tt.smote()
+    smop = smtop()
+    tt.smote(op=smop)
     op = printMloptions()
     grid = input('Grid Search(y/n)?').lower()
     if grid == 'y':

@@ -49,4 +49,8 @@ All algorithms save a ROC curve, a Reliability plot and the Confusion Matrix:
 *Confusion Matrix:*
 <img src="_img/test_DT_CM.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
+The SMOTE oversampling method is available and is recommended to use for unbalanced samples. You can use the `IterativeImputer` class from the Scikit-learn package to impute missing values.
+
+You can use the Grid Search option to automatically tune the hyperparameters. Predefined parameters for searching are in the `gridsc.py` and `rfparams.py` files. You may change the parameters if needed.
+
 Plots are saved into `reports/graphs` folders. Your models and the accuracy report are saved in `reports/models` and `reports/txtfiles`, respectively.

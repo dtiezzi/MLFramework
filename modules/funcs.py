@@ -20,6 +20,9 @@ def printFiles(f):
         '''.format(n+1, i))
     return int(input('SELECT the file for machine learning analysis...')) - 1
 
+def smtop():
+    return 1 if input('Use SMOTE as a resampling method (Y/N)? ').lower() == 'y' else 0
+
 def subset(df, op='y'):
     while op == 'y':
         cols = ['NA']
