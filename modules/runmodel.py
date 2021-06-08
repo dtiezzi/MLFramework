@@ -53,21 +53,3 @@ class Run:
                     self.fittedModel['std_test_score'][candidate]))
                 print("Parameters: {0}".format(self.fittedModel['params'][candidate]))
                 print("")
-
-    """Função auxiliar para execução de modelos de classificação.
-    
-    Parâmetros:
-    
-    - model: modelo de classificação a ser executado
-    - X_train: base de treinamento das variáveis preditoras
-    - y_train: base de treinamento da classe
-    - X_test: base de teste das variáveis preditoras
-    - y_test: base de teste da classe
-    - confusion_matrix (default: True): exibir a matriz de confusão da classificação
-    - normalizeCM (default: False): define se a matriz de confusão será normalizada
-    - roc (default: True): define se será exibida a curva ROC para o classificador
-    - plot_calibration (default: True): define se será exibida a curva de calibração para o classificador
-    - title: define o título a ser exibido nos gráficos
-    - pos_label: indica qual o valor de y_train e y_test que representa a classe positiva. O valor default é 1. 
-
-    """
