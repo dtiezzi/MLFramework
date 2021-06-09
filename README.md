@@ -1,6 +1,6 @@
 # MLFramework
 
-## Python machine learning framework
+## Python machine learning framework for classification problemns.
 
 This is a developing version and the following algorithms have already implemented:
 
@@ -10,6 +10,7 @@ This is a developing version and the following algorithms have already implement
     - Random Forest (rf)
     - Support Vector Machine (svm)
     - Artificial Neural Network (ann)
+    - K-Nearest Neighbors (knn)
 
 - XGboost (xgb)
 
@@ -33,7 +34,15 @@ You have to move your CSV file into the `static` folder. Then, in order to run t
 python main.py
 ```
 
-You can use the Scikit-learn breast cancer sample dataset as an example. The pipeline outputs accuracy graphs and records.
+You can use the Scikit-learn breast cancer sample dataset as an example. The pipeline outputs accuracy graphs and records:
+
+```
+Decision Tree:
+	Brier: 0.096
+	Precision: 0.901
+	Recall: 0.951
+	F1: 0.925
+```
 
 When running the Decision Tree algorithm, the the decision tree plot is created:
 
@@ -41,13 +50,13 @@ When running the Decision Tree algorithm, the the decision tree plot is created:
 
 All algorithms save a ROC curve, a Reliability plot and the Confusion Matrix:
 
-<img src="_img/test_DT_ROC.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_ROC.png" height='350px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
 Calibration Plot:
-<img src="_img/test_DT_CP.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_CP.png" height='350px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </br>
 Confusion Matrix:
-<img src="_img/test_DT_CM.png" height='250px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+<img src="_img/test_DT_CM.png" height='325px' style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
 The SMOTE oversampling method is available and is recommended to use for unbalanced samples. You can use the `IterativeImputer` class from the Scikit-learn package to impute missing values.
 

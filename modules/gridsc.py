@@ -10,6 +10,8 @@ from . import models
 from . import rfparams
 import numpy as np
 import warnings
+warnings.filterwarnings('ignore')
+#from multiprocessing import Process, Pool, cpu_count
 
 warnings.filterwarnings("ignore")
 rfpg = rfparams.Rfparams()
@@ -37,9 +39,9 @@ class Grid:
                'min_samples_leaf': rfpg.min_samples_leaf,
                'bootstrap': rfpg.bootstrap}
         self.lr_model = LogisticRegression()
-        self.xgb_model = XGBClassifier(objective='binary:logistic', eval_metric="logloss" ,verbose=True , nthread=-1)
+        self.xgb_model = XGBClassifier(objective='binary:logistic', eval_metric="logloss" , nthread=16)
         self.xgb_params_grid = {
-                'learning_rate': [0.02, 0.03,0.04],
+                'learning_rate': [0.02, 0.03, 0.04],
                 'n_estimators': [500,700,800],
                 'min_child_weight': [1, 5, 10],
                 'gamma': [0.5, 1, 1.5, 2, 5],
@@ -47,6 +49,13 @@ class Grid:
                 'colsample_bytree': [0.6, 0.8, 1.0],
                 'max_depth': [5,10,20,40]
                 }
+        # self.xgb_params_grid = {
+        #         'learning_rate': [0.1, 0.05],
+        #         'n_estimators': [500,700],
+        #         'min_child_weight': [1, 5],
+        #         'gamma': [0.5, 1],
+        #         'max_depth': [5,30]
+                # }
         self.ann_model = neural_network.MLPClassifier(verbose=True)
         self.ann_params_grid = {'activation':['relu', 'tanh'],
                 'solver': ['adam', 'lbfgs', 'sgd'],
@@ -60,6 +69,7 @@ class Grid:
         self.knn_params_grid = {
                 'n_neighbors': np.arange(3,15,2),
                 'weights': ['uniform', 'distance'],
+                'metric': ['euclidean', 'manhattan']
                 }
         self.md = {'dt' : [self.dt_model, self.dt_params_grid],
                     'svm' : [self.svm_model, self.svm_params_grid],
@@ -82,9 +92,11 @@ class Grid:
 
     def runGrid(self, ops, X_train, y_train):
         m = models.Modelist()
+        # n_cpu = cpu_count()
+        # process_list = []
         for op in ops:
             if op == 'xgb':
-                gs = GridSearchCV(self.md[op][0], param_grid=self.md[op][1], scoring="roc_auc", n_jobs=-1, cv=3)
+                gs = GridSearchCV(self.md[op][0], param_grid=self.md[op][1], scoring="roc_auc", n_jobs=10, cv=10)
                 gs.fit(X_train, y_train)
             elif op == 'ann':
                 gs = GridSearchCV(self.md[op][0], param_grid=self.md[op][1], n_jobs=-1, scoring='roc_auc')
@@ -97,6 +109,9 @@ class Grid:
                 gs = GridSearchCV(self.md[op][0], cv=3, param_grid=self.md[op][1], n_jobs=-1)
                 gs.fit(X_train, y_train)
                 gs.best_estimator_.__dict__['predict_proba'] = True
+            elif op == 'knn':
+                gs = GridSearchCV(self.md[op][0], param_grid=self.md[op][1], cv=3, n_jobs=-1)
+                gs.fit(X_train, y_train)
             else:
                 gs = GridSearchCV(self.md[op][0], cv = 3, param_grid=self.md[op][1], n_jobs=-1)
                 gs.fit(X_train, y_train)
